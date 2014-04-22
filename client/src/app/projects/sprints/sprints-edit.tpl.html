@@ -1,0 +1,84 @@
+<div class="well">
+    <h4>Sprint</h4>
+    <hr>
+    <form name="form" crud-edit="sprint">
+        <div class="row-fluid">
+            <div class="span6">
+                <label>Nombre</label>
+                <input type="text" name="name" ng-model="sprint.name" class="span10" required autofocus>
+                <label>Capacidad</label>
+                <input type="number" name="description" ng-model="sprint.capacity" class="span5" required>
+            </div>
+            <div class="span6">
+                <label>Fecha de Inicio</label>
+                <input type="text" name="name" ng-model="sprint.start" class="span5" required>
+                <label>Terminacion</label>
+                <input type="text" name="name" ng-model="sprint.end" class="span5" required>
+            </div>
+        </div>
+        <hr>
+        <h4>Backlog del Sprint</h4>
+        <hr>
+        <div class="row-fluid">
+            <div class="span6">
+                <label>Actualmente en el Backlog</label>
+                <table class="table table-bordered table-condensed table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th class="span8">Nombre</th>
+                        <th class="span2">Estimado</th>
+                        <th class="span2">Herramientas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="sprintBacklogItem in sprint.sprintBacklog">
+                        <td><a ng-click="viewProductBacklogItem(sprintBacklogItem)">{{productBacklogLookup[sprintBacklogItem].name}}</a>
+                        </td>
+                        <td>{{productBacklogLookup[sprintBacklogItem].estimation}}</td>
+                        <td>
+                            <button class="btn btn-mini btn-danger" ng-click="removeBacklogItem(sprintBacklogItem)">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>Total de estimado</td>
+                        <td>{{estimationInTotal()}}</td>
+                        <td>-</td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="span6">
+                <label>Backlog del Producto</label>
+                <table class="table table-bordered table-condensed table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th class="span8">Nombre</th>
+                        <th class="span2">Estimado</th>
+                        <th class="span2">Herramientas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="productBacklogItem in productBacklog | filter:notSelected">
+                        <td>
+                            <a ng-click="viewProductBacklogItem(productBacklogItem.$id())">{{productBacklogItem.name}}</a>
+                        </td>
+                        <td>{{productBacklogItem.estimation}}</td>
+                        <td>
+                            <button class="btn btn-mini" ng-click="addBacklogItem(productBacklogItem)">Agregar al sprint
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <crud-buttons></crud-buttons>
+        </div>
+    </form>
+</div>

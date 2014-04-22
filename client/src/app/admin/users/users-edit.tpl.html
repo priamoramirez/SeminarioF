@@ -1,0 +1,29 @@
+<div class="well">
+    <form name="form" novalidate crud-edit="user">
+        <legend>Usuario</legend>
+        <gravatar email="user.email" size="200" class="img-polaroid pull-right"></gravatar>
+        <label for="email">E-mail</label>
+        <input class="span6" type="email" id="email" name="email" ng-model="user.email" required unique-email>
+        <span ng-show="showError('email', 'required')" class="help-inline">Este campo es obligatorio.</span>
+        <span ng-show="showError('email', 'email')" class="help-inline">Por favor, introduce una dirección de correo electrónico válida.</span>
+        <span ng-show="showError('email', 'uniqueEmail')" class="help-inline">Esta dirección de correo electrónico no está disponible - por favor, introduzca otra.</span>
+        <label for="lastName">Apellido</label>
+        <input class="span6" type="text" id="lastName" name="lastName" ng-model="user.lastName" required>
+        <span ng-show="showError('lastName', 'required')" class="help-inline">Este campo es obligatorio..</span>
+        <label for="firstName">Nombre</label>
+        <input class="span6" type="text" id="firstName" name="firstName" ng-model="user.firstName" required>
+        <span ng-show="showError('firstName', 'required')" class="help-inline">Este campo es obligatorio..</span>
+        <label for="password">Contraseña</label>
+        <input class="span6" type="password" id="password" name="password" ng-model="user.password" required>
+        <span ng-show="showError('password', 'required')" class="help-inline">Este campo es obligatorio..</span>
+        <span ng-show="showError('passwordRepeat', 'equal')" class="help-inline">Las contraseñas no coinciden.</span>
+        <label for="passwordRepeat">Contraseña (repetir)</label>
+        <input class="span6" type="password" id="passwordRepeat" name="passwordRepeat" ng-model="password" required validate-equals="user.password">
+        <span ng-show="showError('passwordRepeat', 'required')" class="help-inline">Este campo es obligatorio..</span>
+        <span ng-show="showError('passwordRepeat', 'equal')" class="help-inline">Las contraseñas no coinciden.</span>
+        <label>Admin</label>
+        <input type="checkbox" ng-model="user.admin">
+        <hr>
+        <crud-buttons></crud-buttons>
+    </form>
+</div>

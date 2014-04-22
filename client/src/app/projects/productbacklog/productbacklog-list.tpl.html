@@ -1,0 +1,24 @@
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Description</th>
+        <th>Prioridad</th>
+        <th>Estimado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="backlogItem in backlog" ng-click="edit(backlogItem.$id())">
+        <td>{{backlogItem.name}}</td>
+        <td>{{backlogItem.desc}}</td>
+        <td>{{backlogItem.priority}}</td>
+        <td>{{backlogItem.estimation}}</td>
+    </tr>
+    <tr ng-show="!backlog.length">
+        <td colspan="4">No hay elementos</td>
+    </tr>
+    </tbody>
+</table>
+<div class="well">
+    <button class="btn" ng-click="new()">Nuevo Elemento</button>
+</div>
